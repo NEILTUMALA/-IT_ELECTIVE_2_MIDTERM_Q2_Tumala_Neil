@@ -1,0 +1,65 @@
+﻿@model GymAttendanceSystem.Models.MemberVisit
+
+@{
+    ViewData["Title"] = "Visit Details";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Visit Details - @Model.VisitNumber</h4>
+                @if (Model.Status == "Inside Gym")
+                {
+                    <span class="badge bg-success fs-6">Inside Gym</span>
+                }
+                else
+                {
+                    <span class="badge bg-secondary fs-6">Checked Out</span>
+                }
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-4">Member ID</dt>
+                    <dd class="col-sm-8">@Model.MemberId</dd>
+
+                    <dt class="col-sm-4">Full Name</dt>
+                    <dd class="col-sm-8">@Model.FirstName @Model.LastName</dd>
+
+                    <dt class="col-sm-4">Membership Type</dt>
+                    <dd class="col-sm-8">@Model.MembershipType</dd>
+
+                    <dt class="col-sm-4">Contact Number</dt>
+                    <dd class="col-sm-8">@Model.ContactNumber</dd>
+
+                    <dt class="col-sm-4">Visit Date</dt>
+                    <dd class="col-sm-8">@Model.VisitDate.ToString("yyyy-MM-dd")</dd>
+
+                    <dt class="col-sm-4">Time In</dt>
+                    <dd class="col-sm-8">@Model.TimeIn.ToString("hh:mm tt")</dd>
+
+                    <dt class="col-sm-4">Time Out</dt>
+                    <dd class="col-sm-8">@(Model.TimeOut?.ToString("hh:mm tt") ?? "N/A")</dd>
+
+                    <dt class="col-sm-4">Workout Purpose</dt>
+                    <dd class="col-sm-8">@(string.IsNullOrEmpty(Model.WorkoutPurpose) ? "N/A" : Model.WorkoutPurpose)</dd>
+
+                    <dt class="col-sm-4">Notes</dt>
+                    <dd class="col-sm-8">@(string.IsNullOrEmpty(Model.Notes) ? "N/A" : Model.Notes)</dd>
+                </dl>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                <div>
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+                    @if (Model.Status == "Inside Gym")
+                    {
+                        <form asp-action="CheckOut" asp-route-id="@Model.Id" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger">Check Out</button>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,95 @@
+﻿@model GymAttendanceSystem.Models.MemberVisit
+
+@{
+    ViewData["Title"] = "Register Member Visit";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Register Member Visit</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="VisitNumber" class="form-label"></label>
+                            <input asp-for="VisitNumber" class="form-control" placeholder="e.g. VST-1001" />
+                            <span asp-validation-for="VisitNumber" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="MemberId" class="form-label"></label>
+                            <input asp-for="MemberId" class="form-control" placeholder="e.g. MEM-2024" />
+                            <span asp-validation-for="MemberId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="FirstName" class="form-label"></label>
+                            <input asp-for="FirstName" class="form-control" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="LastName" class="form-label"></label>
+                            <input asp-for="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="MembershipType" class="form-label"></label>
+                            <select asp-for="MembershipType" class="form-select">
+                                <option value="">-- Select Membership --</option>
+                                <option value="Standard">Standard</option>
+                                <option value="VIP">VIP</option>
+                                <option value="Student">Student</option>
+                                <option value="Day Pass">Day Pass</option>
+                            </select>
+                            <span asp-validation-for="MembershipType" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="ContactNumber" class="form-label"></label>
+                            <input asp-for="ContactNumber" class="form-control" placeholder="09123456789" />
+                            <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="VisitDate" class="form-label"></label>
+                            <input asp-for="VisitDate" class="form-control" type="date" />
+                            <span asp-validation-for="VisitDate" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="TimeIn" class="form-label"></label>
+                            <input asp-for="TimeIn" class="form-control" type="time" />
+                            <span asp-validation-for="TimeIn" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="WorkoutPurpose" class="form-label"></label>
+                        <input asp-for="WorkoutPurpose" class="form-control" placeholder="e.g. Cardio, Weightlifting, Yoga" />
+                        <span asp-validation-for="WorkoutPurpose" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Notes" class="form-label"></label>
+                        <textarea asp-for="Notes" class="form-control" rows="3" placeholder="Optional notes..."></textarea>
+                        <span asp-validation-for="Notes" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                        <button type="submit" class="btn btn-primary">Save Visit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
